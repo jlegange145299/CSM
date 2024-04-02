@@ -157,7 +157,7 @@ def main():
         layout="wide"
     ) 
        
-    st.sidebar.write(f'<video width="320" height="240" controls autoplay><source src="{video_path}" type="video/mp4"></video>', unsafe_allow_html=True)  
+    st.sidebar.write(f'<video width="300" height="220" controls autoplay><source src="{video_path}" type="video/mp4"></video>', unsafe_allow_html=True)  
     st.sidebar.image(image2_path, caption='',width=300)
     
     col1,col2 = st.columns(2)       
@@ -170,7 +170,7 @@ def main():
         with st.expander("About",expanded=True):             
                 st.header("I am trained on the below collaterals")
                 st.image(image3_path, caption='https://photosfordidd.s3.eu-central-1.amazonaws.com/Cigna+Healthguard+Brochure.pdf',width=640)
-                st.image(image4_path, caption='',width=640)
+                #st.image(image4_path, caption='',width=640)
                
     
 
