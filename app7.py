@@ -169,7 +169,7 @@ def main():
     with col2:
         with st.expander("About",expanded=True):             
                 st.header("I am trained on the below collaterals")
-                st.image(image3_path, caption='https://photosfordidd.s3.eu-central-1.amazonaws.com/Cigna+Healthguard+Brochure.pdf',width=640)
+                st.image(image3_path, caption='https://photosfordidd.s3.eu-central-1.amazonaws.com/Cigna+Healthguard+Brochure.pdf')
                 #st.image(image4_path, caption='',width=640)
                
     
