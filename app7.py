@@ -148,44 +148,65 @@ def main():
     assistant_id = st.secrets["ASSISTANT_ID"]
     video_path = "https://photosfordidd.s3.eu-central-1.amazonaws.com/baselinevideo2.mp4"   
     image2_path = "https://photosfordidd.s3.eu-central-1.amazonaws.com/2.png"
-    image3_path = "https://photosfordidd.s3.eu-central-1.amazonaws.com/PDFcover.png"
+    image3_path = "https://photosfordidd.s3.eu-central-1.amazonaws.com/Average-Time-Spent-in-Meetings.png"
     image4_path = "https://photosfordidd.s3.eu-central-1.amazonaws.com/SC.png"
     
     st.set_page_config(
         page_title="Cigna AI Assistant",
         page_icon="📚",
-        layout="wide"
+        layout="wide",
+        initial_sidebar_state="expanded"
     ) 
-       
+    st.sidebar.title("Welcome to Cigna Meet Smart")   
+    st.sidebar.write(f'<video width="480" height="360" controls autoplay><source src="{video_path}" type="video/mp4"></video>', unsafe_allow_html=True)  
+    #st.sidebar.image(image2_path, caption='',width=300)
+    
+    slider_value = st.sidebar.slider("How long (minutes) do you want to meet", 15, 30, 60)
+    options = ["Dean","Leah","Martin","Conrad"]
+    selected_options = st.sidebar.multiselect("Select who you want to meet:",options)
+    
+   
+   
     
     col1,col2 = st.columns(2)       
         
     with col1:                    
          image_path = "https://logos-world.net/wp-content/uploads/2022/05/Cigna-Logo.png"
-         st.image(image_path, caption='',width=300)    
+         st.image(image_path, caption='',width=300) 
+         
 
     with col2:
-        with st.expander("About",expanded=True):             
-                st.header("I am trained on the below collaterals")
-                st.image(image3_path, caption='https://photosfordidd.s3.eu-central-1.amazonaws.com/Cigna+Healthguard+Brochure.pdf')
+        with st.expander("Meeting Information",expanded=True):             
+                st.header("You are going to meet")
+                st.header(selected_options)
+                st.header("for")
+                st.header(slider_value)
+                st.header("minutes")
+                st.header("have you checked how much time")
+                st.header("they have spent in meetings this week?")
+                
+                st.image(image3_path, caption='https://photosfordidd.s3.eu-central-1.amazonaws.com/Cigna+Healthguard+Brochure.pdf',width=640)
                 #st.image(image4_path, caption='',width=640)
                
-    st.sidebar.write(f'<video width="300" height="220" controls autoplay><source src="{video_path}" type="video/mp4"></video>', unsafe_allow_html=True)  
-    st.sidebar.image(image2_path, caption='',width=300)
+    
 
     add_selectbox = st.sidebar.selectbox(
-        'How often would you like to be contacted?',
-        ('Daily', 'Weekly', 'Monthly','Never')
+        'What doe you want to book?',
+        ('Meeting', 'Call', 'Project Launch','Recurring meeting')
     )
     
     add_selectbox = st.sidebar.selectbox(
-        'How would you like to be contacted?',
-        ('Email', 'WhatsApp', 'Phone')
+        'Where will you meet?',
+        ('Office', 'Virtual', 'Phone Call')
     )
     
-    slider_value = st.sidebar.slider("How satisfied out of 10 were you with your last Cigna interaction?", 0, 5, 10)
-
-    # Initiate st.session_state
+    
+    
+    #if st.sidebar.button('Get information'):
+       #st.session_state.slider_value = selected_options_message
+        
+        
+        # Initiate st.session_state
     st.session_state.client = OpenAI(api_key=api_key)
 
     if "messages" not in st.session_state:
@@ -209,9 +230,11 @@ def main():
 
                 # Accept user input
                 
-    with col1:        
-        if prompt := st.chat_input("Hello how can I help?"):
-            print("---------------------PROMPT RECEIVED-------------------")
+    with col1:
+            if prompt := st.chat_input("Leah and Conrad"):        
+            
+             
+             print("---------------------PROMPT RECEIVED-------------------")
             print(f"PROMPT: {prompt}")
             # Add user message to chat history
             st.session_state.messages.append({"role": "user", "content": prompt})
@@ -220,7 +243,7 @@ def main():
             with col1:
                 with st.chat_message("user"):
                     st.markdown(prompt)
-
+            
             # Create a thread
             st.session_state.thread = st.session_state.client.beta.threads.create()
 
