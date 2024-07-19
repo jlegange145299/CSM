@@ -278,7 +278,7 @@ def main():
                 )    
             print(f"MESSAGES: {st.session_state.messages}")       
                                                               
-            video_url = generate_video(processed_response[:225])
+            video_url = generate_video(processed_response[:500])
             with col1:
              st.write(f'<video width="640" height="480" controls autoplay><source src="{video_url}" type="video/mp4"></video>', unsafe_allow_html=True)
   
