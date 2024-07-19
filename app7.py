@@ -146,7 +146,7 @@ def process_conversation(conversation):
 def main():
     api_key = st.secrets["OPENAI_API_KEY"]
     assistant_id = st.secrets["ASSISTANT_ID"]
-    video_path = "https://photosfordidd.s3.eu-central-1.amazonaws.com/baselinevideo2.mp4"   
+    video_path = "https://photosfordidd.s3.eu-central-1.amazonaws.com/intro.mp4"   
     image2_path = "https://photosfordidd.s3.eu-central-1.amazonaws.com/2.png"
     image3_path = "https://photosfordidd.s3.eu-central-1.amazonaws.com/Average-Time-Spent-in-Meetings.png"
     image4_path = "https://photosfordidd.s3.eu-central-1.amazonaws.com/SC.png"
